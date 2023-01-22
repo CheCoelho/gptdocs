@@ -8,8 +8,6 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const generateDocumentation = async (code: string): Promise<string | Error> => {
-  console.log(process.env.OPEN_AI_SECRET_KEY);
-  console.log(process.env);
   code = code.trim();
   try {
     let functionRegex;
@@ -27,7 +25,6 @@ const generateDocumentation = async (code: string): Promise<string | Error> => {
         `Failed to match the given function with a regular expression`
       );
     }
-
     const match = code.match(functionRegex);
     if (!match) {
       return new Error(`No function name found in code`);
@@ -43,7 +40,6 @@ const generateDocumentation = async (code: string): Promise<string | Error> => {
       The function is: ${code}. Ensure that any params are documented, as well as the return of the function.`,
       max_tokens: 2048,
     });
-    console.log("RES", res);
     const comments = res.data.choices[0].text;
     if (!comments) {
       return "Comments unsuccessful";
