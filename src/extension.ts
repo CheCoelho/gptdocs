@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import generateDocumentation from "./utils";
+
 export const activate = (context: vscode.ExtensionContext) => {
   let disposable = vscode.commands.registerCommand(
     "gptdocs.generate",
@@ -11,19 +12,19 @@ export const activate = (context: vscode.ExtensionContext) => {
         vscode.window.showInformationMessage("No code selected");
         return;
       }
-      const selectedText = editor.document.getText(editor.selection);
-      const response = await generateDocumentation(selectedText);
-      console.log("RESPONSE", response, typeof response);
+      const response = await generateDocumentation(
+        editor.document.getText(editor.selection)
+      );
       if (response instanceof Error) {
         vscode.window.showInformationMessage("Error occured", response.message);
         return;
       }
-      vscode.window.showInformationMessage(
-        "Documentation generated successfully"
-      );
       editor.edit((edit) => {
         edit.replace(editor.selection, response);
       });
+      vscode.window.showInformationMessage(
+        "Documentation generated successfully"
+      );
     }
   );
   context.subscriptions.push(disposable);
