@@ -7,7 +7,7 @@ import {
   createPromptIntroduction,
 } from "../constants/constants.prompts";
 import { getLanguageBundle, SupportedLanguage } from "../types/languages";
-import { handleTypescript } from "./snippet_handlers";
+import { handlePython, handleTypescript } from "./snippet_handlers";
 require("dotenv").config();
 
 const configuration = new Configuration({
@@ -25,6 +25,9 @@ const generateDocumentation = async (
     switch (language) {
       case "typescript":
         functionRegex = handleTypescript(code);
+        break;
+      case "python":
+        functionRegex = handlePython(code);
         break;
       default:
         functionRegex = new Error("Unrecognised language");

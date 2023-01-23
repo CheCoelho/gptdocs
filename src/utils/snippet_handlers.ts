@@ -20,7 +20,7 @@ export const identifyLanguageFromExtension = (
       language = "java";
       break;
     default:
-      language = new Error("Unsupported file type");
+      language = new Error(`Unsupported file type. ${fileExt}`);
   }
   return language as SupportedLanguage;
 };
@@ -35,6 +35,22 @@ export const handleTypescript = (code: string) => {
     functionRegex = /(?<=const)\s+(\w+)\s*(?=())/;
   } else if (code.startsWith("function")) {
     functionRegex = /(?<=function)\s+(\w+)\s*(?=\()/;
+  } else {
+    return new Error(
+      `Failed to match the given function with a regular expression`
+    );
+  }
+  return functionRegex;
+};
+
+export const handlePython = (code: string) => {
+  let functionRegex;
+  if (code.startsWith("def")) {
+    functionRegex = /(?<=def)\s+(\w+)\s*(?=\()/;
+  } else if (code.startsWith("async def")) {
+    functionRegex = /(?<=async\s*def)\s+(\w+)\s*(?=\()/;
+  } else if (code.startsWith("class")) {
+    functionRegex = /(?<=class)\s+(\w+)/;
   } else {
     return new Error(
       `Failed to match the given function with a regular expression`

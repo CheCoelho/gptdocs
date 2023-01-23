@@ -2,7 +2,7 @@ export type SupportedLanguage = "typescript" | "javascript" | "python";
 const documentationStandards: { [K in SupportedLanguage]: string } = {
   typescript: "TsDocs",
   javascript: "JsDocs",
-  python: "PyDocs",
+  python: "PEP 257 ",
 };
 
 export interface LanguageBundle<SupportedLanguage> {

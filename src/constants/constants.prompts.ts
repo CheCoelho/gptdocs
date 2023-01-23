@@ -6,7 +6,7 @@ export const assemblePrompt = (
   code: string
 ) =>
   createPromptIntroduction(match, language) +
-  addDocumentationExpectations() +
+  addDocumentationExpectations(language) +
   addCode(code);
 
 export const createPromptIntroduction = (
@@ -17,7 +17,10 @@ export const createPromptIntroduction = (
   return `Create ${languageBundle["language"]} documentation for this function named: "${match[1]}" following the ${languageBundle["documentation_standard"]} standard. `;
 };
 
-export const addDocumentationExpectations = () => {
+export const addDocumentationExpectations = (language: SupportedLanguage) => {
+  if (language === "python") {
+    return;
+  }
   return `Provide a description of the arguments to the function. Ensure to also include a summary of the function and the return of the function.`;
 };
 
