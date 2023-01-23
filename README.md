@@ -1,39 +1,30 @@
 # gptdocs README
 
-This is the README for your extension "gptdocs". After writing up a brief description, we recommend including the following sections.
+GPTDocs is a vscode extension for generating inline documentation for functions in various coding languages. 
+The extension utilises Open AI's Davinci Codex generative pre-trained transformer (GPT) model and api
+to understand user provided code and generate documentation for it. 
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Auto documentation generation.
+## Development Requirements
 
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+in or
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
 
 This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+* `gptdocs.enable`: Enable/disable this extension.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+The whole extension currently only uses one api key. No attention has yet been paid to the scalability of this. 
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+This is the first release of the extension. It is aimed at being a functional MVP.
 
 ### 1.0.0
 
