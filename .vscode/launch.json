@@ -13,9 +13,7 @@
       "outFiles": ["${workspaceFolder}/dist/**/*.js"],
       "preLaunchTask": "${defaultBuildTask}",
       "sourceMaps": true,
-      "env": {
-        "OPEN_AI_SECRET_KEY": "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"
-      }
+      "envFile": "${workspaceFolder}/.env"
     },
     {
       "name": "Extension Tests",
